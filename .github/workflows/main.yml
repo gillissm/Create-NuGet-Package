@@ -6,9 +6,8 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main ]
     tags:
-    - "v[0-9]+.[0-9]+.[0-9]+-preview[0-9][0-9][0-9]"
+    - "*.*.*"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -29,7 +28,7 @@ jobs:
       - name: Set Variables
         run: |
           echo "NUGET_URL=https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" >> $GITHUB_ENV
-          echo "TAG_VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
+          echo "TAG_VERSION=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
       
       - name: Setup NuGet.exe for use with actions
         # You may pin to the exact commit or the version.
