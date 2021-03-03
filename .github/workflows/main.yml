@@ -48,4 +48,4 @@ jobs:
       - name: Push Package
         env:
           GITHUB_TOKEN: ${{ secrets.PACKAGE_TOKEN}}
-        run: nuget push NuGetCreateTest.${TAG_VERSION}.nupkg --source ${NUGET_URL} --api-key  ${GITHUB_TOKEN}
+        run: nuget push NuGetCreateTest.${TAG_VERSION}.nupkg -Source ${NUGET_URL} -ApiKey  ${GITHUB_TOKEN}
