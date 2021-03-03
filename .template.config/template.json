@@ -1,0 +1,13 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Scott",
+    "classifications": [ "Docker", "Sitecore", "Template" ],
+    "identity": "XP.5.Docker.Run",
+    "name": "Run a XP.5 Docker",
+    "shortName": "sc-dockerrun",
+    "tags": {
+      "language": "docker",
+      "type": "project"
+    },
+    "preferNameDirectory": true
+  }
