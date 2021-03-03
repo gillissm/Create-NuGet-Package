@@ -44,7 +44,7 @@ jobs:
           #nuget-api-key-source: # optional
 
       - name: Create NuGet Package
-         run: nuget pack -NoDefaultExcludes -Version ${TAG_VERSION}
+        run: nuget pack -NoDefaultExcludes -Version ${TAG_VERSION}
       
       - name: Push Package
         env:
