@@ -23,12 +23,12 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Prep
-        run: echo "NUGET_URL=https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" >> $GITHUB_REF
-        run: echo "VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
-
+        run: |
+          echo "NUGET_URL=https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" >> $GITHUB_ENV
+          echo "TAG_VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
 
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - nmae: Checkout to ${GITHUB_WORKSPACE}
+      - name: Checkout to ${GITHUB_WORKSPACE}
         uses: actions/checkout@v2
       
       - name: Setup NuGet.exe for use with actions
@@ -44,9 +44,9 @@ jobs:
           #nuget-api-key-source: # optional
 
       - name: Create NuGet Package
-         run: nuget pack -NoDefaultExcludes -Version ${VERSION}
+         run: nuget pack -NoDefaultExcludes -Version ${TAG_VERSION}
       
       - name: Push Package
         env:
           GITHUB_TOKEN: ${{ secrets.PACKAGE_TOKEN}}
-        run: nuget push NuGetCreateTest.${VERSION}.nupkg --source ${NUGET_URL} --api-key  ${GITHUB_TOKEN}
+        run: nuget push NuGetCreateTest.${TAG_VERSION}.nupkg --source ${NUGET_URL} --api-key  ${GITHUB_TOKEN}
